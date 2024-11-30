@@ -1,0 +1,9 @@
+Best parameters for GradientBoostingClassifier: {'learning_rate': 0.01, 'max_depth': 3, 'max_features': None, 'min_samples_leaf': 5, 'min_samples_split': 20, 'n_estimators': 200, 'subsample': 1.0}
+Best f1 score for GradientBoostingClassifier: 0.791636865549909
+{
+    Precision: 0.6651376146788991, 
+    Recall: 0.6331877729257642, 
+    Accuracy: 0.7479935794542536, 
+    f1: 0.6487695749440716, 
+    auc: 0.8070622658657151
+}
