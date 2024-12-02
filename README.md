@@ -11,7 +11,7 @@ Below is a summary of the best hyperparameter settings for the five models utili
 | **Self-Training**                 | `LogisticRegression`               | - **Threshold**: `0.75` <br> - **Criterion**: `'threshold'` <br> - **k_best**: `10` <br> - **max_iter**: `10` <br> - **verbose**: `False` <br> *Default hyperparameters as provided by scikit-learn’s `SelfTrainingClassifier`*                                                                                                                                                |
 | **Co-Training**                   | `LogisticRegression` & `DecisionTreeClassifier` | - **Number of Iterations (n_iter)**: `10` <br> - **Number of Positive Samples per Iteration (p)**: `5` <br> - **Number of Negative Samples per Iteration (n)**: `5` <br> - **Feature Views**: <br> &nbsp;&nbsp;&nbsp;- *Estimator 1*: First 6 features (`0-5`) <br> &nbsp;&nbsp;&nbsp;- *Estimator 2*: Last 6 features (`6-11`) <br> *Custom hyperparameters set for the `CoTrainingClassifier`* |
 | **Semi-Supervised Ensemble**      | `DecisionTreeClassifier` (10 voters) | - **Number of Estimators (n_estimators)**: `10` <br> - **Voting Mechanism**: `'soft'` <br> *Default hyperparameters as provided by the custom `SemiSupervisedEnsembleClassifier` implementation*                                                                                                                                                |
-| **Pretrained Autoencoder**        | `SVC`                              | - **Autoencoder Hidden Layer Sizes**: `(5,)` <br> - **Autoencoder Activation**: `'relu'` <br> - **Autoencoder Solver**: `'adam'` <br> - **Autoencoder Learning Rate Init**: `0.001` <br> - **Autoencoder Max Iterations**: `200` <br> - **SVM Probability**: `True` <br> - **SVM Random State**: `42` <br> *Default hyperparameters as provided by scikit-learn’s `SVC` and custom `SemiSupervisedAutoencoderClassifier`* |
+| **Pre=training Autoencoder**        | `SVC`                              | - **Autoencoder Hidden Layer Sizes**: `(5,)` <br> - **Autoencoder Activation**: `'relu'` <br> - **Autoencoder Solver**: `'adam'` <br> - **Autoencoder Learning Rate Init**: `0.001` <br> - **Autoencoder Max Iterations**: `200` <br> - **SVM Probability**: `True` <br> - **SVM Random State**: `42` <br> *Default hyperparameters as provided by scikit-learn’s `SVC` and custom `SemiSupervisedAutoencoderClassifier`* |
 
 #### **Details and Considerations:**
 
@@ -31,7 +31,7 @@ Below is a summary of the best hyperparameter settings for the five models utili
    - **Ensemble Structure:** Comprising 10 `DecisionTreeClassifier` voters with a `'soft'` voting mechanism, this ensemble aggregates probabilistic predictions to enhance classification accuracy.
    - **Default Hyperparameters:** The ensemble leverages scikit-learn’s default settings within the custom `SemiSupervisedEnsembleClassifier`, ensuring a straightforward and effective aggregation of multiple classifiers’ strengths.
 
-5. **Pretrained Autoencoder:**
+5. **Pre-training Autoencoder:**
    - **Integrated Learning:** This method first trains an autoencoder (`MLPRegressor` with hidden layer size `(5,)` and `'relu'` activation) to learn compressed representations of the data, subsequently applying a self-training `SVC` classifier with probability estimates enabled.
    - **Default Parameters:** The autoencoder’s default configuration enables effective feature extraction, while the `SVC`’s probability setting (`probability=True`) facilitates accurate AUC computations during evaluation.
 
